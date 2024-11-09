@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { db } from "../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
+import { useAuth } from "../contexts/AuthContext";
 
 const PopupWindow = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
+    const { currentUser } = useAuth();
     const [title, setTitle] = useState("");
     const [startTime, setStartTime] = useState("");
     const [endTime, setEndTime] = useState("");
@@ -27,6 +29,7 @@ const PopupWindow = ({ isOpen, onClose }) => {
                 endTime,
                 description,
                 date: tomorrow.toISOString().split("T")[0],
+                userId: currentUser.uid,
             });
             setTitle("");
             setStartTime("");
@@ -37,6 +40,8 @@ const PopupWindow = ({ isOpen, onClose }) => {
             console.error("Error adding document: ", e);
         }
     };
+
+    console.log("Current User: ", currentUser);
 
     return (
         <div

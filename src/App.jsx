@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import FloatingButton from "./components/FloatingButton";
 import PopupWindow from "./components/PopupWindow";
+import TaskBubble from "./components/TaskBubble";
+import TaskPopupWindow from "./components/TaskPopupWindow";
 import { db } from "./firebaseConfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import "./index.css";
@@ -9,7 +11,7 @@ const getTomorrowDate = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toLocaleDateString("ja-JP", {
-        weekday: "long",
+        weekday: "short",
         year: "numeric",
         month: "long",
         day: "numeric",
@@ -25,6 +27,8 @@ const getTomorrowISOString = () => {
 const App = () => {
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
     const [tasks, setTasks] = useState([]);
+    const [selectedTask, setSelectedTask] = useState(null);
+    const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
 
     const fetchTasks = async () => {
         const tomorrowStr = getTomorrowISOString();
@@ -48,7 +52,7 @@ const App = () => {
 
     useEffect(() => {
         fetchTasks();
-    }, [isPopupOpen]);
+    }, [isPopupOpen, isTaskPopupOpen]);
 
     return (
         <>
@@ -90,18 +94,14 @@ const App = () => {
 
                     {/* Tasks */}
                     {tasks.map((task) => (
-                        <div
+                        <TaskBubble
                             key={task.id}
-                            className="task-item"
-                            style={{
-                                position: "absolute",
-                                left: "70px",
-                                top: `${task.startTime.split(":")[0] * 40}px`, // Adjust based on start time
+                            task={task}
+                            onClick={() => {
+                                setSelectedTask(task);
+                                setIsTaskPopupOpen(true);
                             }}
-                        >
-                            <strong>{task.title}</strong>
-                            <p>{task.description}</p>
-                        </div>
+                        />
                     ))}
                 </div>
             </div>
@@ -111,6 +111,14 @@ const App = () => {
                 isOpen={isPopupOpen}
                 onClose={() => setIsPopupOpen(false)}
             />
+
+            {selectedTask && (
+                <TaskPopupWindow
+                    isOpen={isTaskPopupOpen}
+                    onClose={() => setIsTaskPopupOpen(false)}
+                    task={selectedTask}
+                />
+            )}
 
             {/* Floating button */}
             <FloatingButton onClick={() => setIsPopupOpen(true)} />

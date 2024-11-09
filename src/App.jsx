@@ -1,4 +1,6 @@
 import React from "react";
+import FloatingButton from "./components/FloatingButton";
+import PopupWindow from "./components/PopupWindow";
 
 const getTodayDate = () => {
     const today = new Date();
@@ -11,6 +13,8 @@ const getTodayDate = () => {
 };
 
 const App = () => {
+    const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+
     const hours = Array.from(
         { length: 24 },
         (_, i) => `${i.toString().padStart(2, "0")}:00`
@@ -61,6 +65,15 @@ const App = () => {
                     </div>
                 ))}
             </div>
+
+            {/* Popup window */}
+            <PopupWindow
+                isOpen={isPopupOpen}
+                onClose={() => setIsPopupOpen(false)}
+            />
+
+            {/* Floating button */}
+            <FloatingButton onClick={() => setIsPopupOpen(true)} />
         </div>
     );
 };

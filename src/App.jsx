@@ -1,35 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const getTodayDate = () => {
+    const today = new Date();
+    return today.toLocaleDateString(undefined, {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+};
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+const App = () => {
+    const hours = Array.from(
+        { length: 24 },
+        (_, i) => `${i.toString().padStart(2, "0")}:00`
+    );
 
-export default App
+    return (
+        <div style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
+            {/* Header displaying today's date */}
+            <header style={{ marginBottom: "20px", textAlign: "center" }}>
+                <h1>Plan for {getTodayDate()}</h1>
+            </header>
+
+            {/* Timeline */}
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "20px",
+                }}
+            >
+                {hours.map((hour, index) => (
+                    <div
+                        key={index}
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                        }}
+                    >
+                        {/* Hour label */}
+                        <span
+                            style={{
+                                width: "60px", // Ensure consistent space for hour digits
+                                textAlign: "right",
+                                marginRight: "10px",
+                                fontWeight: "bold",
+                            }}
+                        >
+                            {hour}
+                        </span>
+                        {/* Horizontal line */}
+                        <div
+                            style={{
+                                flex: 1, // Line takes up remaining horizontal space
+                                height: "1px",
+                                backgroundColor: "#ccc",
+                            }}
+                        ></div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default App;

@@ -1,6 +1,7 @@
 import React from "react";
 import FloatingButton from "./components/FloatingButton";
 import PopupWindow from "./components/PopupWindow";
+import "./index.css";
 
 const getTodayDate = () => {
     const today = new Date();
@@ -21,60 +22,54 @@ const App = () => {
     );
 
     return (
-        <div style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
-            {/* Header displaying today's date */}
-            <header style={{ marginBottom: "20px", textAlign: "center" }}>
-                <h1>Plan for {getTodayDate()}</h1>
+        <>
+            <header className="header">
+                <h1 className="header_title">NextPlan</h1>
+                <div className="user-actions">
+                    <p className="username">ユーザー名</p>
+                    <button className="logout-button">ログアウト</button>
+                </div>
             </header>
+            <div className="container">
+                {/* Header displaying today's date */}
+                <div className="date">
+                    <h2 className="title">Plan for {getTodayDate()}</h2>
+                </div>
 
-            {/* Timeline */}
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "20px",
-                }}
-            >
-                {hours.map((hour, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                        }}
-                    >
-                        {/* Hour label */}
-                        <span
+                {/* Timeline */}
+                <div className="TimeLine">
+                    {hours.map((hour, index) => (
+                        <div
+                            key={index}
                             style={{
-                                width: "60px", // Ensure consistent space for hour digits
-                                textAlign: "right",
-                                marginRight: "10px",
-                                fontWeight: "bold",
+                                display: "flex",
+                                alignItems: "center",
                             }}
                         >
-                            {hour}
-                        </span>
-                        {/* Horizontal line */}
-                        <div
-                            style={{
-                                flex: 1, // Line takes up remaining horizontal space
-                                height: "1px",
-                                backgroundColor: "#ccc",
-                            }}
-                        ></div>
-                    </div>
-                ))}
+                            {/* Hour label */}
+                            <span className="hour">{hour}</span>
+                            {/* Horizontal line */}
+                            <div
+                                style={{
+                                    flex: 1, // Line takes up remaining horizontal space
+                                    height: "1px",
+                                    backgroundColor: "#ccc",
+                                }}
+                            ></div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Popup window */}
+                <PopupWindow
+                    isOpen={isPopupOpen}
+                    onClose={() => setIsPopupOpen(false)}
+                />
+
+                {/* Floating button */}
+                <FloatingButton onClick={() => setIsPopupOpen(true)} />
             </div>
-
-            {/* Popup window */}
-            <PopupWindow
-                isOpen={isPopupOpen}
-                onClose={() => setIsPopupOpen(false)}
-            />
-
-            {/* Floating button */}
-            <FloatingButton onClick={() => setIsPopupOpen(true)} />
-        </div>
+        </>
     );
 };
 

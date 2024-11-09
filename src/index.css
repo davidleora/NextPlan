@@ -1,76 +1,125 @@
+/* 全体設定 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* ヘッダー */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid #000000;
+  font-family: "Nunito", sans-serif;
+}
+
+.header_title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #000000;
+  margin: 0;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.username {
+  margin: 0;
+  color: #000000;
+}
+
+.logout-button {
+  padding: 5px 10px;
+  background-color: #2864f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.logout-button:hover {
+  background-color: #1e50c1;
+}
+
+/* コンテナ（全体のレイアウト）*/
+.container {
+  display: flex;
+  font-family: Arial, sans-serif;
+  width: 100%;
+  height: calc(100vh - 60px);
+}
+
+/* ダッシュボード */
+.dashboard {
+  width: 30%;
+  background-color: #f5f5f5;
+  padding: 0px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.dashboard-button {
+  background-color: inherit;
+  color: black;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 20px;
+  font-size: 1.2em;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* タイムライン */
+.timeline-container {
+  width: 70%;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
+}
+
 .TimeLine {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-  
-  .hour {
-    width: 60px;
-    text-align: right;
-    margin-right: 10px;
-    font-weight: bold;
-  }
-  
-  .container {
-    font-family: Arial, sans-serif;
-    padding: 30px;
-    width: 70%;
-    margin-left: auto;
-    position: relative;
-  }
-  
-  .date {
-    margin-bottom: 40px;
-    text-align: center;
-    color: #000000;
-    font-family: Arial, sans-serif;
-    border-bottom: 1px solid #000000;
-    font-weight: 500;
-    font-size: 1.2em;
-    letter-spacing: 0.5px;
-  }
-  
-  .title {
-    margin: 10px 0;
-  }
-  
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    border-bottom: 1px solid #000000;
-    font-family: "Nunito", sans-serif;
-  }
-  
-  .header_title {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #000000;
-    margin: 0;
-  }
-  
-  .user-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .username {
-    margin: 0;
-    color: #000000;
-  }
-  
-  .logout-button {
-    padding: 5px 10px;
-    background-color: #2864f1;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-  }
-  
-  .logout-button:hover {
-    background-color: #1e50c1;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.hour {
+  width: 60px;
+  text-align: right;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+/* タイムラインの日付タイトル */
+.date {
+  margin-bottom: 40px;
+  text-align: center;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  border-bottom: 1px solid #000000;
+  font-weight: 500;
+  font-size: 1.2em;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  margin: 10px 0;
+}

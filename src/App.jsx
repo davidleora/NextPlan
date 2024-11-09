@@ -64,45 +64,53 @@ const App = () => {
                 </div>
             </header>
             <div className="container">
-                {/* Header displaying today's date */}
-                <div className="date">
-                    <h2 className="title">明日の予定：{getTomorrowDate()}</h2>
+                <div className="dashboard">
+                    <button className="dashboard-button">今日のタスク</button>
+                    <button className="dashboard-button">設定</button>
                 </div>
+                <div className="timeline-container">
+                    {/* Header displaying today's date */}
+                    <div className="date">
+                        <h2 className="title">
+                            明日の予定：{getTomorrowDate()}
+                        </h2>
+                    </div>
 
-                {/* Timeline */}
-                <div className="TimeLine">
-                    {hours.map((hour, index) => (
-                        <div
-                            key={index}
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                            }}
-                        >
-                            {/* Hour label */}
-                            <span className="hour">{hour}</span>
-                            {/* Horizontal line */}
+                    {/* Timeline */}
+                    <div className="TimeLine">
+                        {hours.map((hour, index) => (
                             <div
+                                key={index}
                                 style={{
-                                    flex: 1, // Line takes up remaining horizontal space
-                                    height: "1px",
-                                    backgroundColor: "#ccc",
+                                    display: "flex",
+                                    alignItems: "center",
                                 }}
-                            ></div>
-                        </div>
-                    ))}
+                            >
+                                {/* Hour label */}
+                                <span className="hour">{hour}</span>
+                                {/* Horizontal line */}
+                                <div
+                                    style={{
+                                        flex: 1, // Line takes up remaining horizontal space
+                                        height: "1px",
+                                        backgroundColor: "#ccc",
+                                    }}
+                                ></div>
+                            </div>
+                        ))}
 
-                    {/* Tasks */}
-                    {tasks.map((task) => (
-                        <TaskBubble
-                            key={task.id}
-                            task={task}
-                            onClick={() => {
-                                setSelectedTask(task);
-                                setIsTaskPopupOpen(true);
-                            }}
-                        />
-                    ))}
+                        {/* Tasks */}
+                        {tasks.map((task) => (
+                            <TaskBubble
+                                key={task.id}
+                                task={task}
+                                onClick={() => {
+                                    setSelectedTask(task);
+                                    setIsTaskPopupOpen(true);
+                                }}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import FloatingButton from "./components/FloatingButton";
 
 const getTodayDate = () => {
     const today = new Date();
@@ -61,6 +62,11 @@ const App = () => {
                     </div>
                 ))}
             </div>
+
+            {/* Floating button */}
+            <FloatingButton
+                onClick={() => console.log("Floating button clicked!")}
+            />
         </div>
     );
 };

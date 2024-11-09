@@ -1,0 +1,19 @@
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 20px;
+    background-color: #c9daf8; /* パステルブルー */
+    color: #000000;
+    border: 2px dashed #000000;
+    border-radius: 25%;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+    font-size: 2em;
+    cursor: pointer;
+    font-family: 'Patrick Hand', cursive;
+  }
+  
+  .floating-button:hover {
+    background-color: #a2c4c9;
+    color: #ffffff;
+  }

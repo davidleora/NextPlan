@@ -5,7 +5,15 @@ body {
   padding: 0;
   overflow: hidden;
   height: 100%;
-  font-family: Arial, sans-serif;
+  font-family: 'Patrick Hand', 'Sawarabi Gothic', cursive, sans-serif;
+  font-weight: 300;
+  background-color: #fdf6e3; /* 背景色を柔らかいアイボリーに */
+  color: #000000;
+}
+
+/* 全てのテキストにテキストシャドウを適用 */
+body, h1, h2, h3, h4, h5, h6, p, span, label, button {
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15); /* 軽いテキストシャドウ */
 }
 
 /* ヘッダー */
@@ -14,15 +22,16 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  border-bottom: 1px solid #000000;
-  font-family: "Nunito", sans-serif;
+  border-bottom: 2px dashed #000000;
+  background-color: #fff;
 }
 
 .header_title {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: bold;
   color: #000000;
   margin: 0;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 .user-actions {
@@ -37,59 +46,64 @@ body {
 }
 
 .logout-button {
-  padding: 5px 10px;
-  background-color: #2864f1;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
+  padding: 10px 20px;
+  background-color: #c9daf8; /* パステルブルー */
+  color: #000000; /* 黒い文字 */
+  border: 2px dashed #000000; /* スケッチ風の線 */
+  border-radius: 8px; /* 手書き感を出すための角丸 */
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2); /* 鉛筆で描いた影 */
+  font-size: 1em;
+  font-family: 'Patrick Hand', cursive;
   cursor: pointer;
-  font-size: 0.9em;
 }
 
 .logout-button:hover {
-  background-color: #1e50c1;
+  background-color: #a2c4c9; /* ホバー時に少し濃いブルー */
+  color: #ffffff; /* 文字を白に変更 */
 }
 
-/* コンテナ（全体のレイアウト）*/
+/* コンテナ（全体のレイアウト） */
 .container {
   display: flex;
-  font-family: Arial, sans-serif;
   width: 100%;
   height: calc(100vh - 60px);
 }
 
 /* ダッシュボード */
 .dashboard {
-  width: 30%;
+  width: 25%;
   background-color: #f5f5f5;
-  padding: 0px;
+  padding: 0;
+  border-right: 2px dashed #000000;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 0;
 }
 
 .dashboard-button {
-  background-color: inherit;
-  color: black;
-  border: none;
-  border-bottom: 1px solid #ddd;
   padding: 20px;
+  background-color: #fff2cc; /* パステルイエロー */
+  color: #000000;
+  border: none;
+  border-bottom: 2px dashed #000000;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
   font-size: 1.2em;
   text-align: left;
   cursor: pointer;
   width: 100%;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Patrick Hand', cursive;
 }
 
 .dashboard-button:hover {
-  background-color: #e0e0e0;
+  background-color: #f9e4b7; /* ホバー時に少し濃い色 */
+  color: #ffffff;
 }
 
 /* タイムライン */
 .timeline-container {
-  width: 70%;
+  width: 75%;
   padding: 20px;
   overflow-y: auto;
   position: relative;
@@ -106,6 +120,8 @@ body {
   text-align: right;
   margin-right: 10px;
   font-weight: bold;
+  color: #000000;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* タイムラインの日付タイトル */
@@ -113,11 +129,11 @@ body {
   margin-bottom: 40px;
   text-align: center;
   color: #000000;
-  font-family: Arial, sans-serif;
-  border-bottom: 1px solid #000000;
-  font-weight: 500;
-  font-size: 1.2em;
+  border-bottom: 2px dashed #000000;
+  font-weight: bold;
+  font-size: 1.5em;
   letter-spacing: 0.5px;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
 
 .title {

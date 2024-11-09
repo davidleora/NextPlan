@@ -1,45 +1,37 @@
-require("dotenv").config(); // dotenvで環境変数を読み込む
 const express = require("express");
-const line = require("@line/bot-sdk");
+const bodyParser = require("body-parser");
 const admin = require("firebase-admin");
+const serviceAccount = require("./serviceAccountKey.json");
 
 // Firebaseの初期化
 admin.initializeApp({
-  credential: admin.credential.cert({
-    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-    client_email: process.env.FIREBASE_CLIENT_EMAIL,
-    project_id: "nextplan-f4340",
-  }),
+  credential: admin.credential.cert(serviceAccount),
 });
 
 const db = admin.firestore();
-
-// LINE APIの設定を環境変数から取得
-const config = {
-  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
-  channelSecret: process.env.CHANNEL_SECRET,
-};
-
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 
-// Webhookエンドポイントを設定
-app.post("/webhook", line.middleware(config), async (req, res) => {
+// LINEのWebhookエンドポイント
+app.post("/webhook", (req, res) => {
   const events = req.body.events;
 
-  for (let event of events) {
+  events.forEach(async (event) => {
     if (event.type === "message" && event.message.type === "text") {
-      // Firebaseにメッセージ内容を保存
-      await db
-        .collection("todos")
-        .add({ text: event.message.text, done: false });
-    }
-  }
+      const todoText = event.message.text;
 
-  res.sendStatus(200); // LINEに正常終了を通知
+      // FirestoreにTodoとして保存
+      await db.collection("todos").add({ text: todoText, completed: false });
+
+      console.log(`Added todo: ${todoText}`);
+    }
+  });
+
+  res.sendStatus(200);
 });
 
-// サーバーを起動
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
+// サーバーの起動
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { db } from "../firebaseConfig";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
+import "../styles/common.css";
+import "./TaskPopupWindow.css";
 
 const TaskPopupWindow = ({ isOpen, onClose, task }) => {
     if (!isOpen) return null;
@@ -36,61 +38,25 @@ const TaskPopupWindow = ({ isOpen, onClose, task }) => {
     };
 
     return (
-        <div
-            style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                backgroundColor: "rgba(0,0,0,0.5)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                zIndex: 1000,
-            }}
-            onClick={onClose}
-        >
-            <div
-                style={{
-                    backgroundColor: "white",
-                    padding: "20px",
-                    borderRadius: "8px",
-                    width: "400px",
-                    position: "relative",
-                }}
-                onClick={(e) => e.stopPropagation()}
-            >
+        <div className="popup-overlay" onClick={onClose}>
+            <div className="popup-window" onClick={(e) => e.stopPropagation()}>
                 {/* タイトル */}
-                <div style={{ marginBottom: "10px" }}>
-                    <label>
-                        タイトル：
-                        {isEditing ? (
-                            <input
-                                type="text"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                style={{
-                                    width: "100%",
-                                    padding: "5px",
-                                    marginTop: "5px",
-                                }}
-                            />
-                        ) : (
-                            <p>{title}</p>
-                        )}
-                    </label>
-                </div>
+                <label>
+                    タイトル：
+                    {isEditing ? (
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                    ) : (
+                        <p>{title}</p>
+                    )}
+                </label>
 
                 {/* Start と End */}
-                <div
-                    style={{
-                        marginBottom: "10px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <div style={{ width: "48%" }}>
+                <div className="time-inputs">
+                    <div>
                         <label>
                             Start：
                             {isEditing ? (
@@ -100,18 +66,13 @@ const TaskPopupWindow = ({ isOpen, onClose, task }) => {
                                     onChange={(e) =>
                                         setStartTime(e.target.value)
                                     }
-                                    style={{
-                                        width: "100%",
-                                        padding: "5px",
-                                        marginTop: "5px",
-                                    }}
                                 />
                             ) : (
                                 <p>{startTime}</p>
                             )}
                         </label>
                     </div>
-                    <div style={{ width: "48%" }}>
+                    <div>
                         <label>
                             End：
                             {isEditing ? (
@@ -119,11 +80,6 @@ const TaskPopupWindow = ({ isOpen, onClose, task }) => {
                                     type="time"
                                     value={endTime}
                                     onChange={(e) => setEndTime(e.target.value)}
-                                    style={{
-                                        width: "100%",
-                                        padding: "5px",
-                                        marginTop: "5px",
-                                    }}
                                 />
                             ) : (
                                 <p>{endTime}</p>
@@ -133,74 +89,37 @@ const TaskPopupWindow = ({ isOpen, onClose, task }) => {
                 </div>
 
                 {/* 説明 */}
-                <div style={{ marginBottom: "10px" }}>
-                    <label>
-                        説明：
-                        {isEditing ? (
-                            <textarea
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                style={{
-                                    width: "100%",
-                                    padding: "5px",
-                                    marginTop: "5px",
-                                }}
-                                rows="3"
-                            ></textarea>
-                        ) : (
-                            <p>{description}</p>
-                        )}
-                    </label>
-                </div>
+                <label>
+                    説明：
+                    {isEditing ? (
+                        <textarea
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            rows="3"
+                        ></textarea>
+                    ) : (
+                        <p>{description}</p>
+                    )}
+                </label>
 
                 {/* ボタン */}
-                <div
-                    style={{
-                        position: "absolute",
-                        bottom: "20px",
-                        left: "20px",
-                        right: "20px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                    }}
-                >
+                <div className="button-container">
                     <button
-                        style={{
-                            padding: "10px 20px",
-                            backgroundColor: "red",
-                            color: "white",
-                            border: "none",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                        }}
+                        className="button delete-button"
                         onClick={handleDelete}
                     >
                         削除
                     </button>
                     {isEditing ? (
                         <button
-                            style={{
-                                padding: "10px 20px",
-                                backgroundColor: "green",
-                                color: "white",
-                                border: "none",
-                                borderRadius: "4px",
-                                cursor: "pointer",
-                            }}
+                            className="button save-button"
                             onClick={handleUpdate}
                         >
                             保存
                         </button>
                     ) : (
                         <button
-                            style={{
-                                padding: "10px 20px",
-                                backgroundColor: "dodgerblue",
-                                color: "white",
-                                border: "none",
-                                borderRadius: "4px",
-                                cursor: "pointer",
-                            }}
+                            className="button edit-button"
                             onClick={() => setIsEditing(true)}
                         >
                             編集

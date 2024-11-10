@@ -8,15 +8,9 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { useAuth } from "./contexts/AuthContext";
 import "./index.css";
 
-const getTomorrowDate = () => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow.toLocaleDateString("ja-JP", {
-        weekday: "short",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
+const getTodayISOString = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
 };
 
 const getTomorrowISOString = () => {
@@ -28,24 +22,38 @@ const getTomorrowISOString = () => {
 const MainApp = ({ onLogout }) => {
     const { currentUser } = useAuth();
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-    const [tasks, setTasks] = useState([]);
+    const [tasksToday, setTasksToday] = useState([]);
+    const [tasksTomorrow, setTasksTomorrow] = useState([]);
     const [selectedTask, setSelectedTask] = useState(null);
     const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
 
     const fetchTasks = async () => {
+        const todayStr = getTodayISOString();
         const tomorrowStr = getTomorrowISOString();
 
-        const q = query(
+        const qToday = query(
+            collection(db, "tasks"),
+            where("date", "==", todayStr),
+            where("userId", "==", currentUser.uid)
+        );
+        const querySnapshotToday = await getDocs(qToday);
+        const tasksTodayData = [];
+        querySnapshotToday.forEach((doc) => {
+            tasksTodayData.push({ id: doc.id, ...doc.data() });
+        });
+        setTasksToday(tasksTodayData);
+
+        const qTomorrow = query(
             collection(db, "tasks"),
             where("date", "==", tomorrowStr),
             where("userId", "==", currentUser.uid)
         );
-        const querySnapshot = await getDocs(q);
-        const tasksData = [];
-        querySnapshot.forEach((doc) => {
-            tasksData.push({ id: doc.id, ...doc.data() });
+        const querySnapshotTomorrow = await getDocs(qTomorrow);
+        const tasksTomorrowData = [];
+        querySnapshotTomorrow.forEach((doc) => {
+            tasksTomorrowData.push({ id: doc.id, ...doc.data() });
         });
-        setTasks(tasksData);
+        setTasksTomorrow(tasksTomorrowData);
     };
 
     const hours = Array.from(
@@ -73,48 +81,93 @@ const MainApp = ({ onLogout }) => {
                     <button className="dashboard-button">タスク</button>
                     <button className="dashboard-button">設定</button>
                 </div>
-                <div className="timeline-container">
-                    {/* Header displaying today's date */}
-                    <div className="date">
-                        <h2 className="title">
-                            明日の予定：{getTomorrowDate()}
-                        </h2>
+
+                {/* Timeline Section */}
+                <div className="timeline-section">
+                    {/* Today's Timeline */}
+                    <div className="timeline">
+                        <h2 className="title">今日の予定</h2>
+                        <div className="timeline-content">
+                            {hours.map((hour, index) => (
+                                <div key={index} className="timeline-row">
+                                    <span className="hour">{hour}</span>
+                                    <div className="timeline-line"></div>
+                                </div>
+                            ))}
+                            {tasksToday.map((task) => {
+                                const startHour = parseInt(
+                                    task.startTime.split(":")[0],
+                                    10
+                                );
+                                const startMinute = parseInt(
+                                    task.startTime.split(":")[1],
+                                    10
+                                );
+                                const totalMinutes =
+                                    startHour * 60 + startMinute;
+                                return (
+                                    <div
+                                        key={task.id}
+                                        className="task-item"
+                                        style={{
+                                            top: `${
+                                                (totalMinutes / 60) * 60
+                                            }px`, // 1時間あたり60pxとして計算
+                                        }}
+                                        onClick={() => {
+                                            setSelectedTask(task);
+                                            setIsTaskPopupOpen(true);
+                                        }}
+                                    >
+                                        <strong>{task.title}</strong>
+                                        <p>{task.description}</p>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
 
-                    {/* Timeline */}
-                    <div className="TimeLine">
-                        {hours.map((hour, index) => (
-                            <div
-                                key={index}
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                }}
-                            >
-                                {/* Hour label */}
-                                <span className="hour">{hour}</span>
-                                {/* Horizontal line */}
-                                <div
-                                    style={{
-                                        flex: 1, // Line takes up remaining horizontal space
-                                        height: "1px",
-                                        backgroundColor: "#ccc",
-                                    }}
-                                ></div>
-                            </div>
-                        ))}
-
-                        {/* Tasks */}
-                        {tasks.map((task) => (
-                            <TaskBubble
-                                key={task.id}
-                                task={task}
-                                onClick={() => {
-                                    setSelectedTask(task);
-                                    setIsTaskPopupOpen(true);
-                                }}
-                            />
-                        ))}
+                    {/* Tomorrow's Timeline */}
+                    <div className="timeline">
+                        <h2 className="title">明日の予定</h2>
+                        <div className="timeline-content">
+                            {hours.map((hour, index) => (
+                                <div key={index} className="timeline-row">
+                                    <span className="hour">{hour}</span>
+                                    <div className="timeline-line"></div>
+                                </div>
+                            ))}
+                            {tasksTomorrow.map((task) => {
+                                const startHour = parseInt(
+                                    task.startTime.split(":")[0],
+                                    10
+                                );
+                                const startMinute = parseInt(
+                                    task.startTime.split(":")[1],
+                                    10
+                                );
+                                const totalMinutes =
+                                    startHour * 60 + startMinute;
+                                return (
+                                    <div
+                                        key={task.id}
+                                        className="task-item"
+                                        style={{
+                                            top: `${
+                                                (totalMinutes / 60) * 60
+                                            }px`, // 1時間あたり60pxとして計算
+                                        }}
+                                        onClick={() => {
+                                            setSelectedTask(task);
+                                            setIsTaskPopupOpen(true);
+                                        }}
+                                    >
+                                        <strong>{task.title}</strong>
+                                        <p>{task.description}</p>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

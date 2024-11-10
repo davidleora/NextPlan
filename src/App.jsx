@@ -1,76 +1,33 @@
 import React from "react";
-import FloatingButton from "./components/FloatingButton";
-import PopupWindow from "./components/PopupWindow";
-import "./index.css";
-
-const getTodayDate = () => {
-    const today = new Date();
-    return today.toLocaleDateString(undefined, {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
-};
+import { useAuth } from "./contexts/AuthContext";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import MainApp from "./MainApp"; // MainAppを呼び出す
+import { auth } from "./firebaseConfig";
+import { signOut } from "firebase/auth";
 
 const App = () => {
-    const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+    const { currentUser } = useAuth();
 
-    const hours = Array.from(
-        { length: 24 },
-        (_, i) => `${i.toString().padStart(2, "0")}:00`
-    );
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            console.log("ログアウト成功");
+        } catch (error) {
+            console.error("ログアウトエラー:", error);
+        }
+    };
 
-    return (
-        <>
-            <header className="header">
-                <h1 className="header_title">NextPlan</h1>
-                <div className="user-actions">
-                    <p className="username">ユーザー名</p>
-                    <button className="logout-button">ログアウト</button>
-                </div>
-            </header>
-            <div className="container">
-                {/* Header displaying today's date */}
-                <div className="date">
-                    <h2 className="title">Plan for {getTodayDate()}</h2>
-                </div>
-
-                {/* Timeline */}
-                <div className="TimeLine">
-                    {hours.map((hour, index) => (
-                        <div
-                            key={index}
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                            }}
-                        >
-                            {/* Hour label */}
-                            <span className="hour">{hour}</span>
-                            {/* Horizontal line */}
-                            <div
-                                style={{
-                                    flex: 1, // Line takes up remaining horizontal space
-                                    height: "1px",
-                                    backgroundColor: "#ccc",
-                                }}
-                            ></div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Popup window */}
-                <PopupWindow
-                    isOpen={isPopupOpen}
-                    onClose={() => setIsPopupOpen(false)}
-                />
-
-                {/* Floating button */}
-                <FloatingButton onClick={() => setIsPopupOpen(true)} />
+    if (!currentUser) {
+        return (
+            <div>
+                <Login />
+                <Signup />
             </div>
-        </>
-    );
+        );
+    }
+
+    return <MainApp onLogout={handleLogout} />;
 };
 
 export default App;

@@ -181,7 +181,6 @@ const MainApp = ({ onLogout }) => {
                                         }}
                                     >
                                         <strong>{task.title}</strong>
-                                        <p>{task.description}</p>
                                     </div>
                                 );
                             })}

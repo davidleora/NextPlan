@@ -1,0 +1,18 @@
+/* 時間入力フィールドのコンテナ */
+.time-inputs {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .time-inputs > div {
+    width: 48%;
+  }
+  
+  .popup-window label {
+    margin-bottom: 15px;
+  }
+  
+  .popup-window textarea {
+    resize: none;
+  }
+  

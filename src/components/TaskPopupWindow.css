@@ -1,0 +1,32 @@
+/* TaskPopupWindow.css */
+
+/* 削除ボタン */
+.delete-button {
+    background-color: #f4cccc; /* パステルレッド */
+  }
+  
+  .delete-button:hover {
+    background-color: #e06666;
+    color: #ffffff;
+  }
+  
+  /* 編集ボタン */
+  .edit-button {
+    background-color: #c9daf8; /* パステルブルー */
+  }
+  
+  .edit-button:hover {
+    background-color: #6d9eeb;
+    color: #ffffff;
+  }
+  
+  /* 保存ボタン */
+  .save-button {
+    background-color: #b6d7a8; /* パステルグリーン */
+  }
+  
+  .save-button:hover {
+    background-color: #93c47d;
+    color: #ffffff;
+  }
+  

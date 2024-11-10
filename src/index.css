@@ -7,7 +7,7 @@ body {
   height: 100%;
   font-family: 'Patrick Hand', 'Sawarabi Gothic', cursive, sans-serif;
   font-weight: 300;
-  background-color: #fdf6e3; /* 背景色を柔らかいアイボリーに */
+  background-color: #fdf6e3;
   color: #000000;
 }
 
@@ -102,17 +102,43 @@ body, h1, h2, h3, h4, h5, h6, p, span, label, button {
 }
 
 /* タイムライン */
-.timeline-container {
+.timeline-section {
+  display: flex;
   width: 75%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.timeline {
+  width: 50%;
   padding: 20px;
   overflow-y: auto;
+  box-sizing: border-box;
+  position: relative;
+}
+/* タイムライン間の区切り線 */
+.timeline + .timeline {
+  border-left: 2px dashed #000000;
+}
+
+/* タイムラインのコンテンツ */
+.timeline-content {
   position: relative;
 }
 
-.TimeLine {
+/* 時間ラベルと線 */
+.timeline-row {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  align-items: center;
+  position: relative;
+  height: 60px; /* 1時間あたりの高さ */
+}
+
+.timeline-line {
+  flex: 1;
+  height: 1px;
+  background-color: transparent;
+  border-bottom: 1px dashed #000000;
 }
 
 .hour {
@@ -121,7 +147,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, label, button {
   margin-right: 10px;
   font-weight: bold;
   color: #000000;
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+  font-family: 'Patrick Hand', cursive;
 }
 
 /* タイムラインの日付タイトル */
@@ -136,6 +162,45 @@ body, h1, h2, h3, h4, h5, h6, p, span, label, button {
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
 
+/* タイムラインのタイトル */
 .title {
-  margin: 10px 0;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+  border-bottom: 2px dashed #000000;
+  padding-bottom: 10px;
+}
+
+/* タスクバブル */
+.task-item {
+  position: absolute;
+  left: 80px; /* 時間ラベルの幅 + マージン */
+  background-color: #d9ead3;
+  color: #000000;
+  padding: 10px;
+  border: 2px dashed #000000;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+  font-family: 'Patrick Hand', cursive;
+  width: calc(100% - 100px); /* 左側のスペースを除いた幅 */
+  cursor: pointer;
+}
+
+/* タスクバブルのホバー効果 */
+.task-item:hover {
+  background-color: #b6d7a8;
+}
+
+/* タスクテキストのスタイル */
+.task-item strong {
+  font-size: 1.2em;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.task-item p {
+  margin: 0;
 }

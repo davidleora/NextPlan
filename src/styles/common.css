@@ -136,10 +136,3 @@
   text-align: right;
   margin-top: 10px;
 }
-
-#root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}

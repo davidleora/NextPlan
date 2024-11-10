@@ -95,15 +95,26 @@ const MainApp = ({ onLogout }) => {
                 </div>
               ))}
               {tasksToday.map((task) => {
-                const startHour = parseInt(task.startTime.split(":")[0], 10);
-                const startMinute = parseInt(task.startTime.split(":")[1], 10);
-                const totalMinutes = startHour * 60 + startMinute;
+                const [startHour, startMinute] = task.startTime
+                  .split(":")
+                  .map(Number);
+                const [endHour, endMinute] = task.endTime
+                  .split(":")
+                  .map(Number);
+                const startTotalMinutes = startHour * 60 + startMinute;
+                const endTotalMinutes = endHour * 60 + endMinute;
+                const durationMinutes = endTotalMinutes - startTotalMinutes;
+
+                const topPosition = (startTotalMinutes / 60) * 60; // 1時間あたり60pxとして計算
+                const taskHeight = (durationMinutes / 60) * 60;
+
                 return (
                   <div
                     key={task.id}
                     className="task-item"
                     style={{
-                      top: `${(totalMinutes / 60) * 60}px`, // 1時間あたり60pxとして計算
+                      top: `${topPosition}px`,
+                      height: `${taskHeight}px`,
                     }}
                     onClick={() => {
                       setSelectedTask(task);
@@ -129,15 +140,26 @@ const MainApp = ({ onLogout }) => {
                 </div>
               ))}
               {tasksTomorrow.map((task) => {
-                const startHour = parseInt(task.startTime.split(":")[0], 10);
-                const startMinute = parseInt(task.startTime.split(":")[1], 10);
-                const totalMinutes = startHour * 60 + startMinute;
+                const [startHour, startMinute] = task.startTime
+                  .split(":")
+                  .map(Number);
+                const [endHour, endMinute] = task.endTime
+                  .split(":")
+                  .map(Number);
+                const startTotalMinutes = startHour * 60 + startMinute;
+                const endTotalMinutes = endHour * 60 + endMinute;
+                const durationMinutes = endTotalMinutes - startTotalMinutes;
+
+                const topPosition = (startTotalMinutes / 60) * 60; // 1時間あたり60pxとして計算
+                const taskHeight = (durationMinutes / 60) * 60;
+
                 return (
                   <div
                     key={task.id}
                     className="task-item"
                     style={{
-                      top: `${(totalMinutes / 60) * 60}px`, // 1時間あたり60pxとして計算
+                      top: `${topPosition}px`,
+                      height: `${taskHeight}px`,
                     }}
                     onClick={() => {
                       setSelectedTask(task);

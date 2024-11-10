@@ -116,7 +116,7 @@ const MainApp = ({ onLogout }) => {
 
                                 const topPosition =
                                     (startTotalMinutes / 60) * 60; // 1時間あたり60pxとして計算
-                                const taskHeight = (durationMinutes / 60) * 60;
+                                const taskHeight = (durationMinutes / 70) * 60;
 
                                 return (
                                     <div
@@ -164,7 +164,7 @@ const MainApp = ({ onLogout }) => {
 
                                 const topPosition =
                                     (startTotalMinutes / 60) * 60; // 1時間あたり60pxとして計算
-                                const taskHeight = (durationMinutes / 60) * 60;
+                                const taskHeight = (durationMinutes / 70) * 60;
 
                                 return (
                                     <div

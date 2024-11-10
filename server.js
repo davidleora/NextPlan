@@ -40,24 +40,24 @@ app.post("/webhook", (req, res) => {
         const match = trimmedMessage.match(regex);
 
         if (match) {
-          const [_, todoText, date, startTime, endTime, description] = match;
+          const [_, title, date, startTime, endTime, description] = match;
 
-          // Firestoreにフィールドを追加して保存
-          await db.collection("todos").add({
-            text: todoText,
+          // Firestoreの既存のtasksコレクションにデータを追加し、userIdフィールドを含める
+          await db.collection("tasks").add({
+            userId: userId, // ユーザーごとに分けるためのuserIdフィールドを追加
+            title: title, // textフィールドをtitleに変更
             date: date,
             startTime: startTime,
             endTime: endTime,
             description: description,
-            completed: false,
           });
 
           console.log(
-            `Added todo with details: ${todoText}, ${date}, ${startTime} - ${endTime}, ${description}`
+            `Added task with details: ${title}, ${date}, ${startTime} - ${endTime}, ${description}, userId: ${userId}`
           );
           await replyMessage(
             event.replyToken,
-            `Todoが追加されました: ${todoText}`
+            `Todoが追加されました: ${title}`
           );
 
           delete userState[userId];

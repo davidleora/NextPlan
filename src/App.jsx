@@ -7,27 +7,36 @@ import { auth } from "./firebaseConfig";
 import { signOut } from "firebase/auth";
 
 const App = () => {
-    const { currentUser } = useAuth();
+  const { currentUser } = useAuth();
 
-    const handleLogout = async () => {
-        try {
-            await signOut(auth);
-            console.log("ログアウト成功");
-        } catch (error) {
-            console.error("ログアウトエラー:", error);
-        }
-    };
-
-    if (!currentUser) {
-        return (
-            <div>
-                <Login />
-                <Signup />
-            </div>
-        );
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("ログアウト成功");
+    } catch (error) {
+      console.error("ログアウトエラー:", error);
     }
+  };
 
-    return <MainApp onLogout={handleLogout} />;
+  if (!currentUser) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "20px",
+          height: "100vh",
+          gap: "20px",
+        }}
+      >
+        <Login />
+        <Signup />
+      </div>
+    );
+  }
+
+  return <MainApp onLogout={handleLogout} />;
 };
 
 export default App;

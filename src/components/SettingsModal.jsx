@@ -8,12 +8,14 @@ const SettingsModal = ({ isOpen, onClose, onLinkLine }) => {
         <div className="popup-overlay" onClick={onClose}>
             <div className="popup-window" onClick={(e) => e.stopPropagation()}>
                 <h2>設定</h2>
-                <button className="button" onClick={onLinkLine}>
-                    LINEと連携する
-                </button>
-                <button className="button" onClick={onClose}>
-                    閉じる
-                </button>
+                <div className="button-container">
+                    <button className="button" onClick={onLinkLine}>
+                        LINEと連携する
+                    </button>
+                    <button className="button" onClick={onClose}>
+                        閉じる
+                    </button>
+                </div>
             </div>
         </div>
     );

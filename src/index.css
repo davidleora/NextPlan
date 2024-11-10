@@ -125,7 +125,7 @@ button {
   overflow-y: scroll; /* スクロールを有効にする */
   box-sizing: border-box;
   position: relative;
-  height: calc(100vh - 100px); /* ヘッダーを除いた高さ */
+
 }
 /* タイムライン間の区切り線 */
 .timeline + .timeline {
@@ -136,7 +136,7 @@ button {
 .timeline-content {
   position: relative;
   height: 1470px; /* 24時間 × 60分 + 30pxの余白 */
-  padding-top: 30px; /* 上部に30pxの余白を追加 */
+  padding-top: 0px; /* 上部に30pxの余白を追加 */
 }
 
 /* 時間ラベルと線 */
@@ -191,9 +191,9 @@ button {
   background-color: #ffecb3; /* 明るい色で視認性を向上 */
   color: #000000;
   padding: 5px;
-  border: 1px solid #ffb74d; /* 少し濃い色の枠線 */
-  border-radius: 4px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
+  border: 2px dashed #000000; /* 少し濃い色の枠線 */
+  border-radius: 8px;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2); /* 軽い影を追加 */
   font-family: "Patrick Hand", cursive;
   width: calc(100% - 100px); /* 左側のスペースを除いた幅 */
   cursor: pointer;

@@ -22,38 +22,40 @@ const Login = ({ onToggle }) => {
   };
 
   return (
-    <div className="form-container">
-      <h2 className="heading">ログイン</h2>
-      <form onSubmit={handleLogin}>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <label className="form-label">
-          メールアドレス：
-          <input
-            type="email"
-            className="input-field"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label className="form-label">
-          パスワード：
-          <input
-            type="password"
-            className="input-field"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit" className="button">
-          ログイン
-        </button>
-      </form>
-      <div className="switch-container">
-        <button className="button" onClick={onToggle}>
-          サインアップはこちら
-        </button>
+    <div className="top-container">
+      <div className="form-container">
+        <h2 className="heading">ログイン</h2>
+        <form onSubmit={handleLogin}>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <label className="form-label">
+            メールアドレス：
+            <input
+              type="email"
+              className="input-field"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label className="form-label">
+            パスワード：
+            <input
+              type="password"
+              className="input-field"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <button type="submit" className="button">
+            ログイン
+          </button>
+        </form>
+        <div className="switch-container">
+          <button className="button" onClick={onToggle}>
+            サインアップはこちら
+          </button>
+        </div>
       </div>
     </div>
   );

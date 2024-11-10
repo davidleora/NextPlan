@@ -20,16 +20,7 @@ const App = () => {
 
   if (!currentUser) {
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "20px",
-          height: "100vh",
-          gap: "20px",
-        }}
-      >
+      <div>
         <Login />
         <Signup />
       </div>

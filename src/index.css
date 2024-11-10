@@ -5,14 +5,24 @@ body {
   padding: 0;
   overflow: hidden;
   height: 100%;
-  font-family: 'Patrick Hand', 'Sawarabi Gothic', cursive, sans-serif;
+  font-family: "Patrick Hand", "Sawarabi Gothic", cursive, sans-serif;
   font-weight: 300;
   background-color: #fdf6e3;
   color: #000000;
 }
 
 /* 全てのテキストにテキストシャドウを適用 */
-body, h1, h2, h3, h4, h5, h6, p, span, label, button {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+label,
+button {
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15); /* 軽いテキストシャドウ */
 }
 
@@ -53,7 +63,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, label, button {
   border-radius: 8px; /* 手書き感を出すための角丸 */
   box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2); /* 鉛筆で描いた影 */
   font-size: 1em;
-  font-family: 'Patrick Hand', cursive;
+  font-family: "Patrick Hand", cursive;
   cursor: pointer;
 }
 
@@ -93,7 +103,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, label, button {
   cursor: pointer;
   width: 100%;
   box-sizing: border-box;
-  font-family: 'Patrick Hand', cursive;
+  font-family: "Patrick Hand", cursive;
 }
 
 .dashboard-button:hover {
@@ -147,7 +157,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, label, button {
   margin-right: 10px;
   font-weight: bold;
   color: #000000;
-  font-family: 'Patrick Hand', cursive;
+  font-family: "Patrick Hand", cursive;
 }
 
 /* タイムラインの日付タイトル */
@@ -184,7 +194,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, label, button {
   border: 2px dashed #000000;
   border-radius: 8px;
   box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
-  font-family: 'Patrick Hand', cursive;
+  font-family: "Patrick Hand", cursive;
   width: calc(100% - 100px); /* 左側のスペースを除いた幅 */
   cursor: pointer;
 }

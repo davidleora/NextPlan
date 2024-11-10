@@ -14,8 +14,15 @@ const PopupWindow = ({ isOpen, onClose }) => {
     const [endTime, setEndTime] = useState("");
     const [description, setDescription] = useState("");
 
+    const { currentUser } = useAuth();
+    const [title, setTitle] = useState("");
+    const [startTime, setStartTime] = useState("");
+    const [endTime, setEndTime] = useState("");
+    const [description, setDescription] = useState("");
+
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowDate = tomorrow.toLocaleDateString("ja-JP", {
     const tomorrowDate = tomorrow.toLocaleDateString("ja-JP", {
         weekday: "long",
         year: "numeric",

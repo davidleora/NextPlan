@@ -18,13 +18,13 @@
 ### サインアップ画面
 
 アプリの利用を開始するための登録画面です。名前、メールアドレス、パスワードを入力してアカウントを作成できます。
-![Signup Page](assets/signup.png)
+![Signup Page](assets/signup.jpg)
 
 ### ログイン画面
 
 登録済みのアカウントでログインする画面です。入力が簡単で、スムーズにアプリにアクセスできます。
 
-![Login Page](assets/login.png)
+![Login Page](assets/login.jpg)
 
 ### タスク登録
 

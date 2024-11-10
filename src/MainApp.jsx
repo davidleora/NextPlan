@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FloatingButton from "./components/FloatingButton";
 import PopupWindow from "./components/PopupWindow";
-import TaskBubble from "./components/TaskBubble";
 import TaskPopupWindow from "./components/TaskPopupWindow";
 import SettingsModal from "./components/SettingsModal";
 import { db } from "./firebaseConfig";

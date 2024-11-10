@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FloatingButton from "./components/FloatingButton";
 import PopupWindow from "./components/PopupWindow";
-import TaskBubble from "./components/TaskBubble";
 import TaskPopupWindow from "./components/TaskPopupWindow";
 import { db } from "./firebaseConfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -105,8 +104,8 @@ const MainApp = ({ onLogout }) => {
                 const endTotalMinutes = endHour * 60 + endMinute;
                 const durationMinutes = endTotalMinutes - startTotalMinutes;
 
-                const topPosition = (startTotalMinutes / 60) * 60; // 1時間あたり60pxとして計算
-                const taskHeight = (durationMinutes / 60) * 60;
+                const topPosition = startTotalMinutes + 30; // 30px下げる
+                const taskHeight = durationMinutes;
 
                 return (
                   <div
@@ -150,8 +149,8 @@ const MainApp = ({ onLogout }) => {
                 const endTotalMinutes = endHour * 60 + endMinute;
                 const durationMinutes = endTotalMinutes - startTotalMinutes;
 
-                const topPosition = (startTotalMinutes / 60) * 60; // 1時間あたり60pxとして計算
-                const taskHeight = (durationMinutes / 60) * 60;
+                const topPosition = startTotalMinutes + 30; // 30px下げる
+                const taskHeight = durationMinutes;
 
                 return (
                   <div

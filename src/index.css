@@ -122,9 +122,10 @@ button {
 .timeline {
   width: 50%;
   padding: 20px;
-  overflow-y: auto;
+  overflow-y: scroll; /* スクロールを有効にする */
   box-sizing: border-box;
   position: relative;
+  height: calc(100vh - 100px); /* ヘッダーを除いた高さ */
 }
 /* タイムライン間の区切り線 */
 .timeline + .timeline {
@@ -134,6 +135,8 @@ button {
 /* タイムラインのコンテンツ */
 .timeline-content {
   position: relative;
+  height: 1470px; /* 24時間 × 60分 + 30pxの余白 */
+  padding-top: 30px; /* 上部に30pxの余白を追加 */
 }
 
 /* 時間ラベルと線 */
@@ -160,16 +163,13 @@ button {
   font-family: "Patrick Hand", cursive;
 }
 
-/* タイムラインの日付タイトル */
-.date {
-  margin-bottom: 40px;
-  text-align: center;
-  color: #000000;
-  border-bottom: 2px dashed #000000;
-  font-weight: bold;
-  font-size: 1.5em;
-  letter-spacing: 0.5px;
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+/* タイムラインの背景色を交互に設定 */
+.timeline-row:nth-child(odd) {
+  background-color: #f0f0f0; /* 奇数行の背景色 */
+}
+
+.timeline-row:nth-child(even) {
+  background-color: #ffffff; /* 偶数行の背景色 */
 }
 
 /* タイムラインのタイトル */
@@ -188,12 +188,12 @@ button {
 .task-item {
   position: absolute;
   left: 80px; /* 時間ラベルの幅 + マージン */
-  background-color: #d9ead3;
+  background-color: #ffecb3; /* 明るい色で視認性を向上 */
   color: #000000;
-  padding: 10px;
-  border: 2px dashed #000000;
-  border-radius: 8px;
-  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  border: 1px solid #ffb74d; /* 少し濃い色の枠線 */
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* 軽い影を追加 */
   font-family: "Patrick Hand", cursive;
   width: calc(100% - 100px); /* 左側のスペースを除いた幅 */
   cursor: pointer;
@@ -201,7 +201,7 @@ button {
 
 /* タスクバブルのホバー効果 */
 .task-item:hover {
-  background-color: #b6d7a8;
+  background-color: #ffe082; /* ホバー時に色を変える */
 }
 
 /* タスクテキストのスタイル */

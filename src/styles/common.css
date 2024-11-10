@@ -2,133 +2,144 @@
 
 /* フォントと色の設定 */
 * {
-    font-family: 'Patrick Hand', 'Sawarabi Gothic', cursive, sans-serif;
-    color: #000000;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15);
+  font-family: "Patrick Hand", "Sawarabi Gothic", cursive, sans-serif;
+  color: #000000;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15);
 }
 
 /* ボタンの共通スタイル */
 .button {
-    padding: 10px 20px;
-    border: 2px dashed #000000;
-    border-radius: 8px;
-    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
-    font-size: 1em;
-    cursor: pointer;
-    background-color: #c9daf8;
-    color: #000000;
+  padding: 10px 20px;
+  border: 2px dashed #000000;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #c9daf8;
+  color: #000000;
 }
 
 .button:hover {
-    background-color: #a2c4c9;
-    color: #ffffff;
+  background-color: #a2c4c9;
+  color: #ffffff;
 }
 
 /* ポップアップの背景 */
 .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 /* ポップアップウィンドウのスタイル */
 .popup-window {
-    background-color: #fff;
-    padding: 20px;
-    border: 2px dashed #000000;
-    border-radius: 8px;
-    width: 400px;
-    position: relative;
-    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  padding: 20px;
+  border: 2px dashed #000000;
+  border-radius: 8px;
+  width: 400px;
+  position: relative;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* フォームのラベル */
 .popup-window label {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .popup-window textarea {
-    resize: none;
+  resize: none;
 }
 
 /* フォームの入力フィールド */
 .popup-window input[type="text"],
 .popup-window input[type="time"],
 .popup-window textarea {
-    width: 100%;
-    padding: 5px;
-    margin-top: 5px;
-    border: 2px dashed #000000;
-    border-radius: 4px;
-    background-color: #fff2cc;
-    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  border: 2px dashed #000000;
+  border-radius: 4px;
+  background-color: #fff2cc;
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 /* タイトル */
 .popup-window h2 {
-    margin-top: 0;
-    text-align: center;
-    font-size: 1.5em;
-    border-bottom: 2px dashed #000000;
-    padding-bottom: 10px;
+  margin-top: 0;
+  text-align: center;
+  font-size: 1.5em;
+  border-bottom: 2px dashed #000000;
+  padding-bottom: 10px;
 }
 
 /* ボタンコンテナ */
 .popup-window .button-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
-
 
 /* フォームコンテナ */
 .form-container {
-    background-color: #fff;
-    padding: 40px;
-    border: 2px dashed #000000;
-    border-radius: 8px;
-    width: 400px;
-    margin: 0 auto;
-    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  padding: 40px;
+  border: 2px dashed #000000;
+  border-radius: 8px;
+  width: 400px;
+  margin: 0 auto;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* 入力フィールドの共通スタイル */
 .input-field {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 2px dashed #000000;
-    border-radius: 4px;
-    background-color: #fff2cc;
-    /* パステルイエロー */
-    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1);
+  width: 94%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 2px dashed #000000;
+  border-radius: 4px;
+  background-color: #fff2cc;
+  /* パステルイエロー */
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 /* フォームのラベル */
 .form-label {
-    display: block;
-    margin-bottom: 15px;
+  display: block;
+  margin-bottom: 15px;
 }
 
 /* 見出しの共通スタイル */
 .heading {
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #000000;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #000000;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* エラーメッセージ */
 .error-message {
-    color: red;
-    font-size: 0.9em;
-    margin-bottom: 10px;
+  color: red;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.switch-container {
+  text-align: right;
+  margin-top: 10px;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

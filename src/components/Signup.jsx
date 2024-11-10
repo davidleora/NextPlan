@@ -3,7 +3,7 @@ import { auth } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import "../styles/common.css";
 
-const Signup = () => {
+const Signup = ({ onToggle }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -50,6 +50,11 @@ const Signup = () => {
           登録
         </button>
       </form>
+      <div className="switch-container">
+        <button className="button" onClick={onToggle}>
+          ログインはこちら
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "./contexts/AuthContext";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -7,27 +7,35 @@ import { auth } from "./firebaseConfig";
 import { signOut } from "firebase/auth";
 
 const App = () => {
-    const { currentUser } = useAuth();
+  const { currentUser } = useAuth();
+  const [isLogin, setIsLogin] = useState(false); // 初期状態はサインアップ画面
 
-    const handleLogout = async () => {
-        try {
-            await signOut(auth);
-            console.log("ログアウト成功");
-        } catch (error) {
-            console.error("ログアウトエラー:", error);
-        }
-    };
-
-    if (!currentUser) {
-        return (
-            <div>
-                <Login />
-                <Signup />
-            </div>
-        );
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("ログアウト成功");
+    } catch (error) {
+      console.error("ログアウトエラー:", error);
     }
+  };
 
-    return <MainApp onLogout={handleLogout} />;
+  const toggleScreen = () => {
+    setIsLogin(!isLogin);
+  };
+
+  if (!currentUser) {
+    return (
+      <>
+        {isLogin ? (
+          <Login onToggle={toggleScreen} />
+        ) : (
+          <Signup onToggle={toggleScreen} />
+        )}
+      </>
+    );
+  }
+
+  return <MainApp onLogout={handleLogout} />;
 };
 
 export default App;

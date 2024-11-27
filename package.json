@@ -3,19 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@line/bot-sdk": "^9.4.4",
-    "axios": "^1.7.7",
-    "body-parser": "^1.20.3",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.1",
     "firebase": "^11.0.1",
-    "firebase-admin": "^12.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
